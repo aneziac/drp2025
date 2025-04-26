@@ -45,9 +45,13 @@
   )
 }
 
-#let poster_section(title, body) = {
+#let poster_section(title, body, fill: false) = {
+  let fill_color = if fill {rgb("#cde5ce")} else {none}
   block(
     width: 100%,
+    fill: fill_color,
+    inset: 25pt,
+    radius: 20pt,
     stack(
       align(center)[== #title],
       v(0.5em),

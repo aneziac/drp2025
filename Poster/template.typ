@@ -11,7 +11,6 @@
   width:        100%,
   height:       auto,
 ) = context {
-
   let name_content = block(
     fill: bgcolor2,
     inset: 7pt,
@@ -19,10 +18,10 @@
     text(scolor2)[*#name*]
   )
   let block_inset = 0pt
-  let top_pad = 8pt
-  let side_pad = 12pt
-  let bottom_pad = 10pt
-  let radius = 7pt
+  let top_pad     = 8pt
+  let side_pad    = 12pt
+  let bottom_pad  = 10pt
+  let radius      = 7pt
 
   block(
     fill: bgcolor1,
@@ -47,26 +46,43 @@
 }
 
 
-#let poster_header(title) = {
-  return [#title]
+#let poster_header(title, author, mentor, subtitle) = {
+  set text(
+    fill: scolor2
+  )
+  block(
+    fill: bgcolor2,
+    width: 100%,
+    height: 100%,
+    stroke: scolor1,
+    inset: 0.5in,
+    grid(
+      columns: (1fr, 4fr, 1fr),
+      [],
+      align(center + horizon)[#stack(
+        spacing: 0.5in,
+        text(size: 72pt)[#title],
+        text(size: 48pt)[
+          #stack(dir: ltr, spacing: 0.5in, [#author], [Mentor: #mentor])
+        ],
+        text(size: 36pt)[#subtitle]
+      )],
+      align(center)[#image("assets/logo.png")]
+    )
+  )
 }
 
 
-#let poster(title, doc) = {
+#let poster(title, author, mentor, subtitle, doc) = {
   set page(
-    paper: "us-letter",
-    header: poster_header(title),
     height: 32.5in,
-    width: 43in,
-    columns: 3,
+    width:  43in,
+    margin: 0in
   )
-  set par(justify: true)
-  set text(
-    font: "Libertinus Serif",
-    size: 24pt,
+  grid(
+    columns: 1,
+    rows: (15%, 85%),
+    poster_header(title, author, mentor, subtitle),
+    doc
   )
-
-  image("assets/logo.png")
-
-  doc
 }

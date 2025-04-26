@@ -107,13 +107,19 @@
   )
 
   set text(
-    font: "New Computer Modern Sans"
+    font: "New Computer Modern Sans",
+    fill: rgb("#2f0707")
   )
 
   show heading.where(level: 2): it => [
-    #set text(40pt)
+    #set text(40pt, fill: rgb("#074c01"))
     #it
     #v(0.3em)
+  ]
+
+  show strong: it => [
+    #set text(fill: rgb("#021300"))
+    #it
   ]
 
   grid(

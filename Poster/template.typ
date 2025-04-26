@@ -1,5 +1,5 @@
-#let bgcolor1 = white
-#let bgcolor2 = rgb(0, 54, 96)
+#let bgcolor1 = rgb("#b2eeee")
+#let bgcolor2 = rgb("#144a35")
 #let scolor1  = black
 #let scolor2  = white
 #let acolor   = rgb(254, 188, 17)
@@ -45,6 +45,18 @@
   )
 }
 
+#let poster_section(title, body) = {
+  block(
+    width: 100%,
+    stack(
+      align(center)[== #title],
+      line(length: 100%),
+      v(1em),
+      [#body]
+    )
+  )
+}
+
 
 #let poster_header(title, author, mentor, subtitle) = {
   set text(
@@ -61,13 +73,13 @@
       [],
       align(center + horizon)[#stack(
         spacing: 0.5in,
-        text(size: 72pt)[#title],
+        text(size: 72pt, weight: "extrabold")[#title],
         text(size: 48pt)[
           #stack(dir: ltr, spacing: 0.5in, [#author], [Mentor: #mentor])
         ],
         text(size: 36pt)[#subtitle]
       )],
-      align(center)[#image("assets/logo.png")]
+      align(center + horizon)[#image("assets/whitelogo.png", height: 100%)]
     )
   )
 }
@@ -77,8 +89,14 @@
   set page(
     height: 32.5in,
     width:  43in,
-    margin: 0in
+    margin: 0in,
   )
+  show heading.where(level: 2): it => [
+    #set text(40pt)
+    #it
+    #v(0.3em)
+  ]
+
   grid(
     columns: 1,
     rows: (15%, 85%),

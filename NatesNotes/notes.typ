@@ -1,7 +1,7 @@
-#import "@local/superTemplate:0.2.0": *
-#env_colors.update("gruvbox_dark")
-
+#import "@local/superTemplate:0.3.0": *
+#import "@local/superTheorems:0.1.0": *
 #import math_mod: *
+#thmS-init.with(colors: "gruvbox_dark")
 #show: notes.with("Coxeter Groups Notes", "Nate Annau")
 
 = Introduction

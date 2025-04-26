@@ -50,6 +50,7 @@
     width: 100%,
     stack(
       align(center)[== #title],
+      v(0.5em),
       line(length: 100%),
       v(1em),
       [#body]
@@ -85,12 +86,26 @@
 }
 
 
+#let poster_footer() = {
+  block(
+    fill: bgcolor2,
+    width: 100%,
+    height: 100%
+  )
+}
+
+
 #let poster(title, author, mentor, subtitle, doc) = {
   set page(
     height: 32.5in,
     width:  43in,
     margin: 0in,
   )
+
+  set text(
+    font: "New Computer Modern Sans"
+  )
+
   show heading.where(level: 2): it => [
     #set text(40pt)
     #it
@@ -99,8 +114,9 @@
 
   grid(
     columns: 1,
-    rows: (15%, 85%),
+    rows: (15%, 80%, 5%),
     poster_header(title, author, mentor, subtitle),
-    doc
+    doc,
+    poster_footer()
   )
 }

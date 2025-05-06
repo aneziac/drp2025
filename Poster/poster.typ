@@ -19,9 +19,13 @@
   #lorem(300)
 ]
 
+
+
+
 #let chambers_and_nerves = [
-  #lorem(200)
 ]
+
+
 
 #let basic_construction = [
   #lorem(600)

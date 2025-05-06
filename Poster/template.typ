@@ -1,52 +1,11 @@
-#let bgcolor1 = rgb("#b2eeee")
+#let bgcolor1 = rgb("#cde5ce")
 #let bgcolor2 = rgb("#144a35")
-#let scolor1  = black
+#let scolor1  = rgb("#2f0707")
 #let scolor2  = white
-#let acolor   = rgb(254, 188, 17)
-
-#let statement(
-  name,
-  statement,
-  breakable:    false,
-  width:        100%,
-  height:       auto,
-) = context {
-  let name_content = block(
-    fill: bgcolor2,
-    inset: 7pt,
-    width: 100%,
-    text(scolor2)[*#name*]
-  )
-  let block_inset = 0pt
-  let top_pad     = 8pt
-  let side_pad    = 12pt
-  let bottom_pad  = 10pt
-  let radius      = 7pt
-
-  block(
-    fill: bgcolor1,
-    width: width,
-    height: height,
-    inset: block_inset,
-    radius: radius,
-    stroke: scolor1,
-    breakable: breakable,
-    clip: true,
-    stack(
-      name_content,
-      pad(
-        top: top_pad,
-        bottom: bottom_pad,
-        left: side_pad,
-        right: side_pad,
-        statement
-      )
-    )
-  )
-}
+#let acolor   = bgcolor2
 
 #let poster_section(title, body, fill: false) = {
-  let fill_color = if fill {rgb("#cde5ce")} else {none}
+  let fill_color = if fill {bgcolor1} else {none}
   block(
     width: 100%,
     fill: fill_color,
@@ -71,7 +30,7 @@
     fill: bgcolor2,
     width: 100%,
     height: 100%,
-    stroke: scolor1,
+    stroke: acolor,
     inset: 0.5in,
     grid(
       columns: (1fr, 4fr, 1fr),
@@ -108,17 +67,17 @@
 
   set text(
     font: "New Computer Modern Sans",
-    fill: rgb("#2f0707")
+    fill: scolor1
   )
 
   show heading.where(level: 2): it => [
-    #set text(40pt, fill: rgb("#074c01"))
+    #set text(40pt, fill: bgcolor2)
     #it
     #v(0.3em)
   ]
 
   show strong: it => [
-    #set text(fill: rgb("#021300"))
+    #set text(fill: scolor1)
     #it
   ]
 

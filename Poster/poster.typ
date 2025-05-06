@@ -28,11 +28,7 @@
 ]
 
 #let Davis_complex_CAT0 = [
-  #lorem(250)
-]
-
-#let result = [
-  #lorem(100)
+  #lorem(400)
 ]
 
 #let acknowledgements = [
@@ -57,9 +53,8 @@
     ],
     [
       #poster_section([The Davis Complex is $"CAT"(0)$], Davis_complex_CAT0, fill: true)
-      #poster_section("Result", result)
-      #poster_section("Acknowledgements", acknowledgements, fill: true)
-      #poster_section("References", references)
+      #poster_section("Acknowledgements", acknowledgements)
+      #poster_section("References", references, fill: true)
     ]
   ),
   top: 0.5in,

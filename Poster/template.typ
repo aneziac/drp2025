@@ -80,7 +80,7 @@
         spacing: 0.5in,
         text(size: 72pt, weight: "extrabold")[#title],
         text(size: 48pt)[
-          #stack(dir: ltr, spacing: 0.5in, [#author], [Mentor: #mentor])
+          #stack(dir: ltr, spacing: 0.5in, [#author --- Mentor: #mentor])
         ],
         text(size: 36pt)[#subtitle]
       )],

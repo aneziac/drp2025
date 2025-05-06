@@ -1,4 +1,4 @@
-#let bgcolor1 = rgb("#cde5ce")
+#let bgcolor1 = rgb("#E3F6E4") // rgb("#cde5ce")
 #let bgcolor2 = rgb("#144a35")
 #let scolor1  = rgb("#2f0707")
 #let scolor2  = white

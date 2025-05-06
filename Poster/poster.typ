@@ -21,17 +21,17 @@
   draw.content(coords, [#text(fill: fill_color)[#label]], anchor: anchor, padding: .1)
 }
 
-#let ccolor0 = orange
-#let ccolor1 = maroon
-#let ccolor2 = eastern
-#let ccolor3 = olive
+#let ccolor0 = rgb("#5D4C6D")
+#let ccolor1 = rgb("#9E1758")
+#let ccolor2 = rgb("#0A5053")
+#let ccolor3 = rgb("#8B5407")
 
-#let ccolor4 = ccolor0
-#let ccolor5 = ccolor1
-#let ccolor6 = ccolor2
-#let ccolor7 = ccolor3
+#let ccolor4 = rgb("#7E3263")
+#let ccolor5 = rgb("#543456")
+#let ccolor6 = rgb("#4B522D")
+#let ccolor7 = rgb("#74503A")
 
-#let cfill   = olive
+#let cfill   = rgb("#97B6A1")
 
 
 #let coxeter_systems = [
@@ -154,15 +154,20 @@
         line(eset, s30)
         line(eset, s0)
 
+        line(s30, s01, stroke: ccolor0 + 0.1em)
+        line(s01, s12, stroke: ccolor1 + 0.1em)
+        line(s12, s23, stroke: ccolor2 + 0.1em)
+        line(s23, s30, stroke: ccolor3 + 0.1em)
+
         geom_pt(s0, $K_(s_0)$, ccolor0, "north-east")
         geom_pt(s1, $K_(s_1)$, ccolor1, "north-west")
         geom_pt(s2, $K_(s_2)$, ccolor2, "south-west")
         geom_pt(s3, $K_(s_3)$, ccolor3, "south-east")
 
-        geom_pt(s01, [], ccolor4, "north")
-        geom_pt(s12, [], ccolor5, "west")
-        geom_pt(s23, [], ccolor6, "south")
-        geom_pt(s30, [], ccolor7, "east")
+        geom_pt(s01, [], black, "north")
+        geom_pt(s12, [], black, "west")
+        geom_pt(s23, [], black, "south")
+        geom_pt(s30, [], black, "east")
 
         geom_pt(eset, $emptyset$, black, "north-west")
       })],
@@ -183,11 +188,14 @@
         line(eset, u)
         line(eset, st)
 
+        line(s, st, stroke: ccolor0 + 0.1em)
+        line(t, st, stroke: ccolor1 + 0.1em)
+
         geom_pt(s, $K_s$, ccolor0, "south-east")
         geom_pt(t, $K_t$, ccolor1, "south-west")
         geom_pt(u, $K_u$, ccolor2, "north")
 
-        geom_pt(st, [], ccolor4, "south")
+        geom_pt(st, [], black, "south")
         geom_pt(eset, $emptyset$, black, "north-west")
       })],
     )]

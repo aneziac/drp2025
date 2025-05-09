@@ -16,10 +16,7 @@
 )
 #show math.equation: set text(font: "New Computer Modern Math")
 
-#let geom_pt(coords, label, fill_color, anchor) = {
-  draw.circle(coords, radius: (0.05, 0.05), fill: fill_color)
-  draw.content(coords, [#text(fill: fill_color)[#label]], anchor: anchor, padding: .1)
-}
+
 
 #let ccolor0 = rgb("#5D4C6D")
 #let ccolor1 = rgb("#9E1758")
@@ -32,6 +29,126 @@
 #let ccolor7 = rgb("#74503A")
 
 #let cfill   = rgb("#97B6A1")
+
+#let geom_pt(coords, label, fill_color, anchor) = {
+  draw.circle(coords, radius: (0.05, 0.05), fill: fill_color)
+  draw.content(coords, [#text(fill: fill_color)[#label]], anchor: anchor, padding: .1)
+}
+
+#let K_0(pos, refx: false, refy: false, label: []) = {
+  import draw: *
+
+  return group({
+    let (x, y) = pos
+    translate(x: x, y: y)
+    if(refx) {
+      scale(x: -1)
+      rotate(calc.pi/2)
+    }
+    if(refy) {
+      scale(y: -1)
+      rotate(calc.pi/2)
+    }
+    let (s0, s1, s2, s3) = ((-1/2, -1/2), (1/2, -1/2), (1/2, 1/2), (-1/2, 1/2))
+    let (s01, s12, s23, s30) = ((0, -1), (1, 0), (0, 1), (-1, 0))
+    let eset = (0, 0)
+
+    merge-path(fill: cfill, {
+      line(s0, s01)
+      line(s01, s1)
+      line(s1, s12)
+      line(s12, s2)
+      line(s2, s23)
+      line(s23, s3)
+      line(s30, s0)
+    })
+
+    line(eset, s0)
+    line(eset, s01)
+    line(eset, s1)
+    line(eset, s12)
+    line(eset, s2)
+    line(eset, s23)
+    line(eset, s3)
+    line(eset, s30)
+    line(eset, s0)
+
+    line(s30, s01, stroke: ccolor0 + 0.1em)
+    line(s01, s12, stroke: ccolor1 + 0.1em)
+    line(s12, s23, stroke: ccolor2 + 0.1em)
+    line(s23, s30, stroke: ccolor3 + 0.1em)
+
+    geom_pt(s0, [], ccolor0, "north-east")
+    geom_pt(s1, [], ccolor1, "north-west")
+    geom_pt(s2, [], ccolor2, "south-west")
+    geom_pt(s3, [], ccolor3, "south-east")
+
+    geom_pt(s01, [], black, "north")
+    geom_pt(s12, [], black, "west")
+    geom_pt(s23, [], black, "south")
+    geom_pt(s30, [], black, "east")
+
+    geom_pt(eset, label, black, "center")
+  })
+}
+
+#let K_1(pos, rad, reflect: false, label: []) = {
+  import draw: *
+
+  let label_anchor = "south"
+  let inc = calc.pi / 8
+  if(inc <= rad and rad < 3 * inc) {
+    label_anchor = "south-east"
+  } else if(3 * inc <= rad and rad < 5 * inc) {
+    label_anchor = "east"
+  } else if(5 * inc <= rad and rad < 7 * inc) {
+    label_anchor = "north-east"
+  } else if(7 * inc <= rad and rad < 9 * inc) {
+    label_anchor = "north"
+  } else if(9 * inc <= rad and rad < 11 * inc) {
+    label_anchor = "north-west"
+  } else if(11 * inc <= rad and rad < 13 * inc) {
+    label_anchor = "west"
+  } else if(13 * inc <= rad and rad < 15 * inc) {
+    label_anchor = "south-west"
+  }
+
+  let height = calc.sqrt(3)/2
+
+  return group({
+    let (x, y) = pos
+    translate(x: x, y: y)
+    rotate(rad)
+    if(reflect) {
+      scale(x: -1)
+    }
+
+    let (s, t, u) = ((1/2, height), (- 1/2, height), (0, 2 * height))
+    let st = (0, 0)
+    let eset = (0, height)
+
+    merge-path(fill: cfill, {
+      line(s, st)
+      line(st, t)
+      line(t, eset)
+      line(eset, s)
+    })
+
+    line(eset, u)
+    line(eset, st)
+
+    line(s, st, stroke: ccolor0 + 0.1em)
+    line(t, st, stroke: ccolor1 + 0.1em)
+
+    geom_pt(s, [], ccolor0, "south-east")
+    geom_pt(t, [], ccolor1, "south-west")
+    geom_pt(u, [], ccolor2, "north")
+
+    geom_pt(st, [], black, "south")
+    geom_pt(eset, label, black, label_anchor)
+  })
+}
+
 
 
 #let coxeter_systems = [
@@ -120,9 +237,9 @@
     gutter: 2em,
     align(center + horizon)[#grid(
       columns: 2,
-      rows: 3,
-      gutter: 1em,
-      [$L(W^((0)))$#canvas(length: 2cm, {
+      row-gutter: 0.5cm,
+      column-gutter: 1cm,
+      canvas(length: 2cm, {
         import draw: *
         let (s0, s1, s2, s3) = ((0, 0), (1, 0), (1, 1), (0, 1))
 
@@ -137,8 +254,8 @@
         geom_pt(s1, $s_1$, ccolor1, "north-west")
         geom_pt(s2, $s_2$, ccolor2, "south-west")
         geom_pt(s3, $s_3$, ccolor3, "south-east")
-      })],
-      [$L(W^((1)))$#canvas(length: 2cm, {
+      }),
+      canvas(length: 2cm, {
         import draw: *
         let val = calc.sqrt(3)/2
         let (s, t, u) = ((-1/2, val), (1/2, val), (0, 0))
@@ -150,8 +267,9 @@
         geom_pt(s, $s$, ccolor0, "south-east")
         geom_pt(t, $t$, ccolor1, "south-west")
         geom_pt(u, $u$, ccolor2, "north")
-      })],
-      [$L'(W^((0)))$#canvas(length: 2cm, {
+      }),
+      [$L(W^((0)))$], [$L(W^((1)))$],
+      canvas(length: 2cm, {
         import draw: *
         let (s0, s1, s2, s3) = ((0, 0), (1, 0), (1, 1), (0, 1))
         let (s01, s12, s23, s30) = ((1/2, -1/2), (1 + 1/2, 1/2), (1/2, 1 + 1/2), (- 1/2, 1/2))
@@ -175,8 +293,8 @@
         geom_pt(s12, ${s_1, s_2}$, ccolor5, "west")
         geom_pt(s23, ${s_2, s_3}$, ccolor6, "south")
         geom_pt(s30, ${s_0, s_3}$, ccolor7, "east")
-      })],
-      [$L'(W^((0)))$#canvas(length: 2cm, {
+      }),
+      canvas(length: 2cm, {
         import draw: *
         let val = calc.sqrt(3)/2
         let (s, t, u) = ((-1/2, val), (1/2, val), (0, 0))
@@ -192,8 +310,9 @@
         geom_pt(u, $u$, ccolor2, "north")
 
         geom_pt(st, ${s, t}$, ccolor4, "south")
-      })],
-      [$K(W^((0)))$#canvas(length: 2cm, {
+      }),
+      [$L'(W^((0)))$], [$L'(W^((1)))$],
+      canvas(length: 2cm, {
         import draw: *
         let (s0, s1, s2, s3) = ((0, 0), (1, 0), (1, 1), (0, 1))
         let (s01, s12, s23, s30) = ((1/2, -1/2), (1 + 1/2, 1/2), (1/2, 1 + 1/2), (- 1/2, 1/2))
@@ -235,8 +354,8 @@
         geom_pt(s30, [], black, "east")
 
         geom_pt(eset, $emptyset$, black, "north-west")
-      })],
-      [$K(W^((1)))$#canvas(length: 2cm, {
+      }),
+      canvas(length: 2cm, {
         import draw: *
         let val = calc.sqrt(3)/2
         let (s, t, u) = ((-1/2, val), (1/2, val), (0, 0))
@@ -262,7 +381,8 @@
 
         geom_pt(st, [], black, "south")
         geom_pt(eset, $emptyset$, black, "north-west")
-      })],
+      }),
+      [$K(W^((0)))$], [$K(W^((1)))$]
     )]
   )
 ]
@@ -290,6 +410,78 @@
     cal(U)(W, X) = W times X \/ sim
   $
   equipped with the quotient topology.
+
+  #align(center + horizon)[#grid(
+    columns: (1fr, 1fr),
+    row-gutter: 1cm,
+    [#canvas(length: 2cm, {
+      import draw: *
+
+      let pos = (0, 0)
+      let d = 1
+      K_0(pos, label: $K$)
+
+      let pos = (- d, - d)
+      K_0(pos, refy: true, label: $s_0 K$)
+
+      let pos = (d, - d)
+      K_0(pos, refx: true, label: $s_1 K$)
+
+      let pos = (d, d)
+      K_0(pos, refy: true, label: $s_2 K$)
+
+      let pos = (- d, d)
+      K_0(pos, refx: true, label: $s_3 K$)
+
+      let pos = (0, - 2 * d)
+      K_0(pos, refx: true, refy: true, label: $s_0 s_1 K$)
+
+      let pos = (2 * d, 0)
+      K_0(pos, refx: true, refy: true, label: $s_1 s_2 K$)
+
+      let pos = (2 * d, - 2 * d)
+      K_0(pos, refx: true, refy: true, label: $s_1 s_3 K$)
+    })],
+    [#canvas(length: 2cm, {
+      import draw: *
+
+      let height = calc.sqrt(3)/2
+      let rot = calc.pi/3
+      let pos_finder(itr) = (calc.sin(itr * rot) * 4 * height, calc.cos(itr * rot) * 4 * height)
+
+      let pos = (0, 0)
+      K_1(pos, 0 * rot, label: $K$)
+      K_1(pos, 1 * rot, reflect: true, label: $t K$)
+      K_1(pos, 2 * rot, label: $t s K$)
+      K_1(pos, 3 * rot, reflect: true, label: $t s t K$)
+      K_1(pos, 4 * rot, label: $s t K$)
+      K_1(pos, 5 * rot, reflect: true, label: $s K$)
+
+      let pos = pos_finder(0)
+      K_1(pos, 2 * rot)
+      K_1(pos, 3 * rot, reflect: true)
+      K_1(pos, 4 * rot)
+
+      let pos = pos_finder(1)
+      K_1(pos, 2 * rot)
+
+      let pos = pos_finder(2)
+      K_1(pos, 1 * rot, reflect: true)
+
+      let pos = pos_finder(3)
+      K_1(pos, 5 * rot, reflect: true)
+      K_1(pos, 0 * rot)
+      K_1(pos, 1 * rot, reflect: true)
+
+      let pos = pos_finder(4)
+      K_1(pos, 5 * rot, reflect: true)
+
+      let pos = pos_finder(5)
+      K_1(pos, 4 * rot)
+    })],
+    [$cal(U) (W^((0)), K(W^((0))))$],
+    [$cal(U) (W^((1)), K(W^((1))))$]
+  )]
 ]
 
 #let Davis_complex_CAT0 = [
@@ -314,7 +506,7 @@
       #poster_section("Chambers and Nerves", chambers_and_nerves, fill: true)
     ],
     [
-      #poster_section("Tits Representation", tits_representation, fill: true)
+      // #poster_section("Tits Representation", tits_representation, fill: true)
       #poster_section("Basic Construction", basic_construction)
     ],
     [

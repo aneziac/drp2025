@@ -192,29 +192,7 @@
   Observe this definition implies each generator $s_i$ is an involution and thus corresponds to a reflection.
 
   Denoting the indexing set ${s_i}$ by $S$, we define a *Coxeter System* as the pair $(W, S)$.
-]
-
-#let tits_representation = [
-  To better understand the abstract presentation of Coxeter groups, a key result due to Jacques Tits gives a faithful linear representation
-  $
-    rho : W -> GL_n (RR),
-  $
-  with $n = |S|$, such that
-  - for each $i$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane
-  - $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$
-
-  To construct this, consider the real vector space $V$ with basis ${e_1, dots, e_n}$, and define a symmetric bilinear form $B$ on $V$ by
-  $
-    B(e_i, e_j) = cases(
-      -cos(pi / m_(i j)) &"if" m_(i j) "is finite" \
-      -1 &"if" m_(i j) = infty.
-    )
-  $
-  Then for hyperplanes $H_i = {v in V : B (e_i, v) = 0}$, our linear maps $sigma_i : V -> V$ are defined by
-  $
-    sigma_i (v) = v - 2B(e_i, v) e_i,
-  $
-  which we note is the usual form of reflections in Euclidean geometry.
+  Then define the *parabolic subgroup* $W_T$ of $W$ by $W_T = gen(T)$ such that $(W_T, T)$ is a Coxeter System as well.
 ]
 
 #let chambers_and_nerves = [
@@ -228,11 +206,11 @@
   #grid(
     columns: 2,
     [
-      - An *abstract simplicial complex* is a set $V$, called the _vertex set_, and a collection $X$ of finite subsets of $V$ such that (1) ${v} in X, forall v in V$; and (2) $Delta in X "and" Delta' subset.eq Delta ==> Delta' in X$
+      - An *abstract simplicial complex* is a set $V$, called the _vertex set_, and a collection $X$ of finite subsets of $V$ such that ${v} in X, forall v in V$ and $Delta in X "and" Delta' subset.eq Delta ==> Delta' in X$
       - A *nerve* of a $(W, S)$, $L = L(W, S)$, is the simplicial complex with a simplex $sigma_T$ for each $T subset.eq S$ such that $T eq.not emptyset$ and $W_T$ is finite.
       - Let $L'$ be the *barycentric subdivision* of $L$.
       - The *chamber* $K$ is the cone on the $L'$. For each $s in S$ we can define the closed star in $L$ of the vertex $s$ to be $K_s subset.eq K$.
-        - Since all simplices are represented by a nonempty set of generators, we let the point added when constructing the cone to be represented by the empty set, $emptyset$.
+        - The point added by the cone is the emptyset $emptyset$ in the simplicial complex.
     ],
     gutter: 2em,
     align(center + horizon)[#grid(
@@ -394,13 +372,8 @@
   Call each $X_s$ the $s$-mirror of $X$.
   The idea is to "glue" copies of $X$ along the mirrors.
 
-  For each point $x in X$, define $S(x) subset.eq S$ by
-  $
-    S(x) := {s in S : x in X_s}.
-  $
-
+  For each point $x in X$, define $S(x) subset.eq S$ by $S(x) := {s in S : x in X_s}$
   Now consider some $T subset.eq S$.
-  Define the *parabolic subgroup* $W_T$ of $W$ by $W_T = gen(T)$.
   We define a relation $sim$ on $W times X$ by
   $
     (w, x) sim (w', x') "if and only if" x = x' "and" inv(w) w' in W_(S(x)).
@@ -410,7 +383,7 @@
     cal(U)(W, X) = W times X \/ sim
   $
   equipped with the quotient topology.
-  We can then define the *Davis complex* $Sigma(W, S)$ by the basic construction $
+  We then define the *Davis complex* $Sigma(W, S)$ as $
     Sigma(W, S)
       &= cal(U) (W, K)
   $ where $K$ is a chamber with the mirror structures $(K_s)_(s in S)$ as defined previously.
@@ -488,8 +461,45 @@
   )]
 ]
 
+#let tits_representation = [
+  A key result due to Jacques Tits gives a faithful linear representation for $(W, S)$
+  $
+    rho : W -> GL_n (RR),
+  $
+  with $n = |S|$, such that
+  - for each $i$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane
+  - $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$
+
+  To construct this, consider the real vector space $V$ with basis ${e_1, dots, e_n}$, and define a symmetric bilinear form $B$ on $V$ by
+  $
+    B(e_i, e_j) = cases(
+      -cos(pi / m_(i j)) &"if" m_(i j) "is finite" \
+      -1 &"if" m_(i j) = infty.
+    )
+  $
+  Then we define $H_i = {v in V : B (e_i, v) = 0}$ and $sigma_i (v) = v - 2B(e_i, v) e_i$.
+]
+
 #let Davis_complex_CAT0 = [
-  #lorem(100)
+  Let $(X, d)$ be a *geodesic space* and let $[x y]$ represent the geodesic segment from $x$ to $y$.
+  Given a *geodesic triangle* $Delta = [x_1 x_2] cup [x_2 x_3] cup [x_3 x_1]$ in $X$ we have a *comparison triangle* $overline(Delta) = [overline(x)_1 overline(x)_2] cup [overline(x)_2 overline(x)_3] cup [overline(x)_3 overline(x)_1]$ in $EE^2$ such that $d_X (x_i, x_j) = d_(EE^2) (overline(x)_i, overline(x)_j)$.
+
+  $(X, d)$ is said to be *$"CAT"(0)$* if every geodesic triangle $Delta subset.eq X$, and all points $p, q in Delta$ we have $
+    d_X (p, q)
+      &lt.eq d_(EE^2) (overline(p), overline(q)).
+  $
+
+  We choose a collection $d = (d_s)_(s in S)$ in which $d_s > 0$ for any $s in S$.
+  For finite $W_T$ we let $
+    C_T
+      &= {x in RR^n bar.v ip(x, e_t) gt.eq 0, forall t in T}
+  $ be a chamber in $RR^n$ generated by the hyperplanes $H_t$ for $t in T$ as in the *Tits Representation*.
+
+  Then we can define the unique point $x_T$ in the interior of $C_T$ such that $d(x_T, H_t) = d_t$ for all $t in T$.
+  We then metrize each cell of $Sigma(W, S)$, $w W_T$, as a copy of the polytope generated by the $W_T$-orbit of $x_T$.
+
+  Using this piecewise metric we have that the Davis complex defined earlier is a complete $"CAT"(0)$ space.
+  This leads us to the important result that $Sigma(W, S)$ is contractible and that the *word problem* (if two words represent the same element) and *conjugacy problem* (if two words represent conjugate elements) are solvable for $W$.
 ]
 
 #let Buildings = [
@@ -515,12 +525,12 @@
       #poster_section("Chambers and Nerves", chambers_and_nerves, fill: true)
     ],
     [
-      // #poster_section("Tits Representation", tits_representation, fill: true)
       #poster_section("Davis Complex as a Basic Construction", basic_construction, fill: true)
-      #poster_section([The Davis Complex is $"CAT"(0)$], Davis_complex_CAT0)
+      #poster_section("Tits Representation", tits_representation)
     ],
     [
-      #poster_section("Buildings", Buildings)
+      #poster_section([The Davis Complex is $"CAT"(0)$], Davis_complex_CAT0)
+      // #poster_section("Buildings", Buildings)
       #poster_section("Acknowledgements", acknowledgements, fill: true)
       #poster_section("References", references)
     ]

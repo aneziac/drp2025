@@ -228,7 +228,7 @@
   #grid(
     columns: 2,
     [
-      - An *abstract simplicial complex* is a set $V$, called the _vertex set_, and a collection $X$ of finite subsets of $V$ such that (1) ${v} in X} forall v in V$; and (2) $Delta in X "and" Delta' subset.eq Delta ==> Delta' in X$
+      - An *abstract simplicial complex* is a set $V$, called the _vertex set_, and a collection $X$ of finite subsets of $V$ such that (1) ${v} in X, forall v in V$; and (2) $Delta in X "and" Delta' subset.eq Delta ==> Delta' in X$
       - A *nerve* of a $(W, S)$, $L = L(W, S)$, is the simplicial complex with a simplex $sigma_T$ for each $T subset.eq S$ such that $T eq.not emptyset$ and $W_T$ is finite.
       - Let $L'$ be the *barycentric subdivision* of $L$.
       - The *chamber* $K$ is the cone on the $L'$. For each $s in S$ we can define the closed star in $L$ of the vertex $s$ to be $K_s subset.eq K$.
@@ -392,7 +392,7 @@
 
   If $(W, S)$ is a Coxeter system and $X$ connected and Hausdorff, define a *mirror structure* on $X$ over $S$ by a collection $(X_s)_(s in S)$ where each $X_s$ is a nonempty, closed subset of $X$.
   Call each $X_s$ the $s$-mirror of $X$.
-  Our idea is to "glue" copies of $X$ along the mirrors.
+  The idea is to "glue" copies of $X$ along the mirrors.
 
   For each point $x in X$, define $S(x) subset.eq S$ by
   $
@@ -410,6 +410,10 @@
     cal(U)(W, X) = W times X \/ sim
   $
   equipped with the quotient topology.
+  We can then define the *Davis complex* $Sigma(W, S)$ by the basic construction $
+    Sigma(W, S)
+      &= cal(U) (W, K)
+  $ where $K$ is a chamber with the mirror structures $(K_s)_(s in S)$ as defined previously.
 
   #align(center + horizon)[#grid(
     columns: (1fr, 1fr),
@@ -440,7 +444,7 @@
       K_0(pos, refx: true, refy: true, label: $s_1 s_2 K$)
 
       let pos = (2 * d, - 2 * d)
-      K_0(pos, refx: true, refy: true, label: $s_1 s_3 K$)
+      K_0(pos, label: $s_1 s_3 K$)
     })],
     [#canvas(length: 2cm, {
       import draw: *
@@ -485,15 +489,20 @@
 ]
 
 #let Davis_complex_CAT0 = [
+  #lorem(100)
+]
+
+#let Buildings = [
   #lorem(400)
 ]
 
 #let acknowledgements = [
-  #lorem(25)
+  We would like to thank our mentor Benedict Lee for his guidance and support in our readings. We also want to thank the Directed Reading Program as UCSB for the opportunity.
 ]
 
+
 #let references = [
-  #lorem(25)
+  #bibliography("./books.bib", title: [], full: true)
 ]
 
 #pad(
@@ -507,12 +516,13 @@
     ],
     [
       // #poster_section("Tits Representation", tits_representation, fill: true)
-      #poster_section("Basic Construction", basic_construction)
+      #poster_section("Davis Complex as a Basic Construction", basic_construction, fill: true)
+      #poster_section([The Davis Complex is $"CAT"(0)$], Davis_complex_CAT0)
     ],
     [
-      #poster_section([The Davis Complex is $"CAT"(0)$], Davis_complex_CAT0, fill: true)
-      #poster_section("Acknowledgements", acknowledgements)
-      #poster_section("References", references, fill: true)
+      #poster_section("Buildings", Buildings)
+      #poster_section("Acknowledgements", acknowledgements, fill: true)
+      #poster_section("References", references)
     ]
   ),
   top: 0.5in,

@@ -1,8 +1,4 @@
-#let bgcolor1 = rgb("#E3F6E4") // rgb("#cde5ce")
-#let bgcolor2 = rgb("#144a35")
-#let scolor1  = rgb("#2f0707")
-#let scolor2  = white
-#let acolor   = bgcolor2
+#import "./colors.typ": *
 
 #let poster_section(title, body, fill: false) = {
   let fill_color = if fill {bgcolor1} else {none}
@@ -15,8 +11,8 @@
       align(center)[== #title],
       v(0.5em),
       line(length: 100%, stroke: (paint: bgcolor2, thickness: 3pt, cap: "round")),
-      v(1em),
-      [#body]
+      v(0.7em),
+      [#body],
     )
   )
 }

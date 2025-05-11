@@ -554,8 +554,6 @@
   Let $(W, S)$ be a Coxeter system.
   If $X$ is a simplex with codimension-1 faces ${Delta_s | s in S}$ and mirror structure $(X_s)_(s in S) = Delta_s$, then we call the basic construction $cal(U)(W, X)$ the *Coxeter complex*#h(-0.3em).
 
-  [[Coxeter complex diagram]]
-
   A *building of type* $(W, S)$ is a simplicial complex $Delta$ which is a union of subcomplexes called *apartments*#h(-0.4em), where each apartment is a copy of the Coxeter complex for $(W, S)$.
   With the _chambers_ defined to be the maximal simplices in $Delta$, the following hold:
   1. Any two chambers are contained in a common apartment.
@@ -567,13 +565,13 @@
   $
   and let $W$ act on the Euclidean line $EE^1$.
 
-  [[Infinite dihedral group digram]]
+  #align(center)[#image("assets/placeholder_dihedral.png")]
 
   The apartments in a building of type $(W, S)$ are the tessellations of the line, and the chambers are the edges in the tessellation.
 
   Now, consider the 3-regular tree $T_3$.
 
-  [[3-Tree building diagram]]
+  #align(center)[#image("assets/placeholder_3tree.png", height: 15%)]
 ]
 
 #let acknowledgements = [

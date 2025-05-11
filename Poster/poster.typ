@@ -159,6 +159,47 @@
   })
 }
 
+#let threetree(n) = {
+  import draw: *
+
+  let inner_ring_base_angle = calc.pi / (3 * calc.pow(2, n - 1))
+  let inner_ring_inc_angle = 2 * calc.pi / (3 * calc.pow(2, n - 1))
+  let outer_ring_base_angle = calc.pi / (3 * calc.pow(2, n))
+  let outer_ring_inc_angle = 2 * calc.pi / (3 * calc.pow(2, n))
+
+  for x in std.range(0, 3 * calc.pow(2, n - 1)) {
+    let inner = (
+      n * calc.cos(inner_ring_base_angle + inner_ring_inc_angle * x),
+      n * calc.sin(inner_ring_base_angle + inner_ring_inc_angle * x)
+    )
+    let outer1 = (
+      (n + 1) * calc.cos(outer_ring_base_angle + outer_ring_inc_angle * (2 * x)),
+      (n + 1) * calc.sin(outer_ring_base_angle + outer_ring_inc_angle * (2 * x))
+    )
+    let outer2 = (
+      (n + 1) * calc.cos(outer_ring_base_angle + outer_ring_inc_angle * (2 * x + 1)),
+      (n + 1) * calc.sin(outer_ring_base_angle + outer_ring_inc_angle * (2 * x + 1))
+    )
+
+    on-layer(
+      0, {
+        line(inner, outer1, stroke: ccolor0 + 0.15em)
+        line(inner, outer2, stroke: ccolor0 + 0.15em)
+      }
+    )
+
+    on-layer(
+      1, {
+        circle(inner, radius: (0.1, 0.1), fill: ccolor0, stroke: none)
+
+        // double add just to make things easier for last layer
+        circle(outer1, radius: (0.1, 0.1), fill: ccolor0, stroke: none)
+        circle(outer2, radius: (0.1, 0.1), fill: ccolor0, stroke: none)
+      }
+    )
+  }
+}
+
 
 
 #let coxeter_systems = [
@@ -194,7 +235,6 @@
       ],
       canvas(length: 2cm, {
         import draw: *
-        // show math.equation: set text(size: 10pt)
 
         let base_angle = 0
         let inc_angle = calc.pi / 4
@@ -252,7 +292,7 @@
     [
       - An *abstract simplicial complex* is a set $V$, called the _vertex set_, and a collection $X$ of finite subsets of $V$ such that ${v} in X forall v in V$, and when $Delta in X "with" Delta' subset.eq Delta, "we have" Delta' in X$
 
-      - A *nerve* of $(W, S)$, denoted $L = L(W, S)$, is the simplicial complex with a simplex $sigma_T$ for each $T subset.eq S$ such that $T eq.not emptyset$ and $W_T$ is finite
+      - The *nerve* of $(W, S)$, denoted $L = L(W, S)$, is the simplicial complex with a simplex $sigma_T$ for each $T subset.eq S$ such that $T eq.not emptyset$ and $W_T$ is finite
 
       - Let $L'$ be the *barycentric subdivision* of $L$
 
@@ -537,7 +577,7 @@
   $
 
   We choose a collection $d = (d_s)_(s in S)$ for which $d_s > 0$ for any $s in S$.
-  For finite $W_T$ we let $C_T$
+  For finite $W_T$, we let $C_T$
   // $
   //   C_T
   //     &= {x in RR^n bar.v ip(x, e_t) gt.eq 0, forall t in T}
@@ -559,19 +599,51 @@
   1. Any two chambers are contained in a common apartment.
   2. If $A$ and $A'$ are two arbitrary apartments, then there is an isomorphism $A -> A'$ which fixes $A sect A'$ pointwise
 
-  For example, take the infinite dihedral group
-  $
-    W = gen(s\, t | s^2 = t^2 = 1) iso D_infty,
-  $
-  and let $W$ act on the Euclidean line $EE^1$.
+  // For example, take the infinite dihedral group
+  // $
+  //   W = gen(s\, t | s^2 = t^2 = 1) iso D_infty,
+  // $
+  // and let $W$ act on the Euclidean line $EE^1$.
 
-  #align(center)[#image("assets/placeholder_dihedral.png")]
+  // #align(center)[#image("assets/placeholder_dihedral.png")]
 
-  The apartments in a building of type $(W, S)$ are the tessellations of the line, and the chambers are the edges in the tessellation.
+  // The apartments in a building of type $(W, S)$ are the tessellations of the line, and the chambers are the edges in the tessellation.
 
-  Now, consider the 3-regular tree $T_3$.
+  For example, consider the 3-regular tree $T_3$:
 
-  #align(center)[#image("assets/placeholder_3tree.png", height: 15%)]
+  #align(center)[#canvas(length: 5%, {
+    import draw: *
+
+    draw.on-layer(
+      0, {
+        line(
+          (0, 0),
+          (calc.cos(calc.pi / 3), calc.sin(calc.pi / 3)),
+          stroke: ccolor0 + 0.15em
+        )
+        line(
+          (0, 0),
+          (calc.cos(calc.pi), calc.sin(calc.pi)),
+          stroke: ccolor0 + 0.15em
+        )
+        line(
+          (0, 0),
+          (calc.cos(-calc.pi / 3), calc.sin(-calc.pi / 3)),
+          stroke: ccolor0 + 0.15em
+        )
+      }
+    )
+
+    draw.on-layer(
+      1,
+      circle((0, 0), radius: (0.1, 0.1), fill: ccolor0, stroke: none)
+    )
+
+    threetree(1)
+    threetree(2)
+    threetree(3)
+    threetree(4)
+  })]
 ]
 
 #let acknowledgements = [
@@ -596,7 +668,7 @@
     [
       #poster_section("The Davis Complex as a Basic Construction", basic_construction, fill: true)
       // #poster_section("Tits Representation", tits_representation)
-      #poster_section([The Davis Complex is $"CAT"(0)$], Davis_complex_CAT0)
+      #poster_section([The Davis Complex is _CAT(0)_], Davis_complex_CAT0)
     ],
     [
       #poster_section("Buildings", buildings)

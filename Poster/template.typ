@@ -14,7 +14,7 @@
     stack(
       align(center)[== #title],
       v(0.5em),
-      line(length: 100%),
+      line(length: 100%, stroke: (paint: bgcolor2, thickness: 3pt, cap: "round")),
       v(1em),
       [#body]
     )

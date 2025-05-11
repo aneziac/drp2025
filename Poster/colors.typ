@@ -2,7 +2,7 @@
 #let bgcolor2 = rgb("#144a35")
 #let scolor1  = rgb("#2f0707")
 #let scolor2  = white
-#let acolor   = bgcolor2
+#let acolor   = rgb("#583b29")
 
 #let ccolor0 = rgb("#5D4C6D")
 #let ccolor1 = rgb("#9E1758")

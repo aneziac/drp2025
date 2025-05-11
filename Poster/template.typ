@@ -22,35 +22,54 @@
   set text(
     fill: scolor2
   )
-  block(
-    fill: bgcolor2,
-    width: 100%,
-    height: 100%,
-    stroke: acolor,
-    inset: 0.5in,
-    grid(
-      columns: (1fr, 4fr, 1fr),
-      [],
-      align(center + horizon)[#stack(
-        spacing: 0.5in,
-        text(size: 72pt, weight: "extrabold")[#title],
-        text(size: 48pt)[
-          #stack(dir: ltr, spacing: 0.5in, [#author --- Mentor: #mentor])
-        ],
-        text(size: 36pt)[#subtitle]
-      )],
-      align(center + horizon)[#image("assets/whitelogo.png", height: 100%)]
-    )
+  stack(
+    dir: ttb,
+    block(
+      fill: bgcolor2,
+      width: 100%,
+      height: 100%,
+      inset: 0.5in,
+      grid(
+        columns: (1fr, 4fr, 1fr),
+        [],
+        align(center + horizon)[#stack(
+          spacing: 0.5in,
+          text(size: 72pt, weight: "extrabold")[#title],
+          text(size: 48pt)[
+            #stack(dir: ltr, spacing: 0.5in, [#author --- Mentor: #mentor])
+          ],
+          text(size: 36pt)[#subtitle]
+        )],
+        align(center + horizon)[#image("assets/whitelogo.png", height: 100%)]
+      )
+    ),
+     rect(
+      fill: acolor,
+      height: 0.1in,
+      width: 100%,
+      outset: 1pt,
+     )
   )
+
 }
 
 
 #let poster_footer() = {
-  block(
-    fill: bgcolor2,
-    width: 100%,
-    height: 100%
+  stack(
+    dir: ttb,
+    rect(
+      fill: acolor,
+      width: 100%,
+      height: 0.1in,
+      outset: 1pt
+    ),
+    block(
+      fill: bgcolor2,
+      width: 100%,
+      height: 100%
+    )
   )
+
 }
 
 

@@ -607,8 +607,9 @@
 
   For example, take the infinite dihedral group
   $
-    W = gen(s\, t | s^2 = t^2 = 1) iso D_infty.
+    W = gen(s\, t | s^2 = t^2 = 1) iso D_infty,
   $
+  whose Coxeter complex is the tessellation of the real line $EE^1$ under the action of $W$.
 
   We claim that the 3-regular tree $T_3$, shown below, is a building of type $(W, S)$, when we take the system of apartments to be the collection of all bi-infinite lines in $T_3$.
 
@@ -648,7 +649,7 @@
 
   Observe that the first condition is satisfied since any two edges in the tree are contained in a common line.
   The second condition follows because the isomorphism $A -> A'$ does not have to be the restriction of a map $Delta -> Delta$ (although it usually will be).
-  Thus $T_3$ is a building of type $(W, S)$.
+  Thus, $T_3$ is a building of type $(W, S)$.
 ]
 
 #let acknowledgements = [

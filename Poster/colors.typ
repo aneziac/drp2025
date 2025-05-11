@@ -15,3 +15,7 @@
 #let ccolor7 = rgb("#74503A")
 
 #let cfill   = rgb("#97B6A1")
+
+#let interp1 = rgb("#6A4470")
+#let interp2 = rgb("#7b3a6e")
+#let interp3 = rgb("#8c2c66")

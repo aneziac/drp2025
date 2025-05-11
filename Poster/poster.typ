@@ -162,6 +162,12 @@
 #let threetree(n) = {
   import draw: *
 
+  let colors_list = (
+    none, interp1, interp2, interp3, ccolor1
+  )
+
+  let color = colors_list.at(n)
+
   let inner_ring_base_angle = calc.pi / (3 * calc.pow(2, n - 1))
   let inner_ring_inc_angle = 2 * calc.pi / (3 * calc.pow(2, n - 1))
   let outer_ring_base_angle = calc.pi / (3 * calc.pow(2, n))
@@ -183,18 +189,18 @@
 
     on-layer(
       0, {
-        line(inner, outer1, stroke: ccolor0 + 0.15em)
-        line(inner, outer2, stroke: ccolor0 + 0.15em)
+        line(inner, outer1, stroke: color + 0.15em)
+        line(inner, outer2, stroke: color + 0.15em)
       }
     )
 
     on-layer(
       1, {
-        circle(inner, radius: (0.1, 0.1), fill: ccolor0, stroke: none)
+        circle(inner, radius: (0.1, 0.1), fill: color, stroke: none)
 
         // double add just to make things easier for last layer
-        circle(outer1, radius: (0.1, 0.1), fill: ccolor0, stroke: none)
-        circle(outer2, radius: (0.1, 0.1), fill: ccolor0, stroke: none)
+        circle(outer1, radius: (0.1, 0.1), fill: color, stroke: none)
+        circle(outer2, radius: (0.1, 0.1), fill: color, stroke: none)
       }
     )
   }
@@ -595,21 +601,16 @@
   If $X$ is a simplex with codimension-1 faces ${Delta_s | s in S}$ and mirror structure $(X_s)_(s in S) = Delta_s$, then we call the basic construction $cal(U)(W, X)$ the *Coxeter complex*#h(-0.3em).
 
   A *building of type* $(W, S)$ is a simplicial complex $Delta$ which is a union of subcomplexes called *apartments*#h(-0.4em), where each apartment is a copy of the Coxeter complex for $(W, S)$.
-  With the _chambers_ defined to be the maximal simplices in $Delta$, the following hold:
-  1. Any two chambers are contained in a common apartment.
+  With _chambers_ defined to be the maximal simplices in $Delta$, the following hold:
+  1. Any two chambers are contained in a common apartment
   2. If $A$ and $A'$ are two arbitrary apartments, then there is an isomorphism $A -> A'$ which fixes $A sect A'$ pointwise
 
-  // For example, take the infinite dihedral group
-  // $
-  //   W = gen(s\, t | s^2 = t^2 = 1) iso D_infty,
-  // $
-  // and let $W$ act on the Euclidean line $EE^1$.
+  For example, take the infinite dihedral group
+  $
+    W = gen(s\, t | s^2 = t^2 = 1) iso D_infty.
+  $
 
-  // #align(center)[#image("assets/placeholder_dihedral.png")]
-
-  // The apartments in a building of type $(W, S)$ are the tessellations of the line, and the chambers are the edges in the tessellation.
-
-  For example, consider the 3-regular tree $T_3$:
+  We claim that the 3-regular tree $T_3$, shown below, is a building of type $(W, S)$, when we take the system of apartments to be the collection of all bi-infinite lines in $T_3$.
 
   #align(center)[#canvas(length: 5%, {
     import draw: *
@@ -644,6 +645,10 @@
     threetree(3)
     threetree(4)
   })]
+
+  Observe that the first condition is satisfied since any two edges in the tree are contained in a common line.
+  The second condition follows because the isomorphism $A -> A'$ does not have to be the restriction of a map $Delta -> Delta$ (although it usually will be).
+  Thus $T_3$ is a building of type $(W, S)$.
 ]
 
 #let acknowledgements = [

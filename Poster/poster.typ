@@ -306,8 +306,7 @@
 
       - The *chamber* $K$ is the cone on $L'$. For each $s in S$, we can define the closed star in $L'$ of the vertex $s$ to be $K_s subset.eq K$.
 
-      - The point added by the cone is the empty set $emptyset$ in the simplicial complex.
-        - This can be thought of as representing the finite subgroup $W_emptyset$.
+      - The point added by the cone is the empty set $emptyset$ in the simplicial complex. This can be thought of as representing the finite subgroup $W_emptyset$.
     ],
     gutter: 2em,
     align(center + horizon)[#grid(
@@ -559,20 +558,6 @@
   )]
 ]
 
-#let tits_representation = [
-  A key result due to Jacques Tits gives a faithful linear representation for $(W, S)$, $
-    rho : W -> GL_n (RR),
-  $ with $n = |S|$, such that for each $i$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane and $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$
-  Consider the real vector space $V$ with basis ${e_1, dots, e_n}$, and define a symmetric bilinear form $B$ on $V$ by
-  $
-    B(e_i, e_j) = cases(
-      -cos(pi / m_(i j)) &"if" m_(i j) "is finite" \
-      -1 &"if" m_(i j) = infty.
-    )
-  $
-  Then we define $H_i = {v in V : B (e_i, v) = 0}$ and $sigma_i (v) = v - 2B(e_i, v) e_i$.
-]
-
 #let Davis_complex_CAT0 = [
   // Let $(X, d)$ be a *geodesic space* (a space in which each pair of points in $X$ is connected by a geodesic) and let $[x y]$ represent the geodesic segment from $x$ to $y$.
   // Given a *geodesic triangle* $Delta = [x_1 x_2] cup [x_2 x_3] cup [x_3 x_1]$ in $X$ and a *comparison triangle* $overline(Delta) = [overline(x)_1 overline(x)_2] cup [overline(x)_2 overline(x)_3] cup [overline(x)_3 overline(x)_1]$ in $EE^2$ such that $d_X (x_i, x_j) = d_(EE^2) (overline(x)_i, overline(x)_j)$, we call $(X, d)$ *$"CAT"(0)$* if for every geodesic triangle $Delta subset.eq X$, and all points $p, q in Delta$, we have $
@@ -580,7 +565,7 @@
   //    &lt.eq d_(EE^2) (overline(p), overline(q)).
   //$
   We say a *geodesic space* $X$ is *$"CAT"(0)$* if the triangles in $X$ appear no "fatter" than triangles in a Euclidean space $EE^n$ of same dimension.
-  Similarly we can define *$"CAT"(-1)$* and *$"CAT"(0)$* for triangles in $X$ compared to triangles in Hyperbolic space $HH^n$ and Spherical space $SS^n$ respectively.
+  Similarly we can define *$"CAT"(-1)$* and *$"CAT"(1)$* for triangles in $X$ compared to triangles in hyperbolic space $HH^n$ and spherical space $SS^n$ respectively.
   In order to realize this condition for the Davis complex we must construct a metric for it.
 
   We first choose a collection $underline(d) = (d_s)_(s in S)$ for which $d_s > 0$ for any $s in S$.
@@ -597,18 +582,30 @@
   This result is incredibly impactful as it leads to the Davis complex being *contractible* and it shows that the *word problem* (if two words represent the same element) and *conjugacy problem* (if two words represent conjugate elements) are solvable for $W$.
 ]
 
+#let tits_representation = [
+  A key result due to Jacques Tits gives a faithful linear representation for $(W, S)$, $
+    rho : W -> GL_n (RR),
+  $ with $n = |S|$, such that for each $i$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane and $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$
+  Consider the real vector space $V$ with basis ${e_1, dots, e_n}$, and define a symmetric bilinear form $B$ on $V$ by
+  $
+    B(e_i, e_j) = cases(
+      -cos(pi / m_(i j)) &"if" m_(i j) "is finite" \
+      -1 &"if" m_(i j) = infty.
+    )
+  $
+  Then we define $H_i = {v in V : B (e_i, v) = 0}$ and $sigma_i (v) = v - 2B(e_i, v) e_i$.
+]
+
+
 #let buildings = [
-  A *building of type* $(W, S)$ is a simplicial complex $Delta$, which is a union of subcomplexes called *apartments*#h(-0.4em), where each apartment is a copy of the Coxeter complex (or alternatively the Davis complex) for $(W, S)$.
+  A *building of type* $(W, S)$ is a simplicial complex $Delta$, which is a union of subcomplexes called *apartments*#h(-0.4em), where each apartment is a copy of the *Coxeter complex* (or alternatively the Davis complex) for $(W, S)$.
   With _chambers_ defined to be the maximal simplices in $Delta$, the following hold:
   1. Any two chambers are contained in a common apartment
   2. If $A$ and $A'$ are arbitrary apartments, then there is an isomorphism $A -> A'$ which fixes $A sect A'$ pointwise
 
-  
-
   #align(horizon)[#grid(
-    columns: (auto, auto),
-    column-gutter: 1.5cm,
-    align(center)[#canvas(length: 1.5cm, {
+    columns: (1fr, 1fr),
+    align(left)[#canvas(length: 1.4cm, {
       import draw: *
 
       draw.on-layer(
@@ -648,7 +645,9 @@
       $
       whose Coxeter complex (and similarly its Davis complex) is the tessellation of the real line $EE^1$ under the action of $W$.
 
-      The 3-regular tree $T_3$ (shown to the left) is a building of type $(W, S)$ when we take the system of apartments to be the collection of all bi-infinite lines in $T_3$. Then note that we can take the product of the trees, $T_3 times T_3$, such that it is a building of type $(W times W, S times S)$.
+      The 3-regular tree $T_3$ (shown to the left) is a building of type $(W, S)$ when we take the system of apartments to be the collection of all bi-infinite lines in $T_3$. Each line segment corresponds to a chamber in the building and each path through the tree corresponds to a single Davis complex $Sigma(W, S)$.
+
+      // Then note that we can take the product of the trees, $T_3 times T_3$, such that it is a building of type $(W times W, S times S)$.
     ],
   )]
 
@@ -688,9 +687,9 @@
     grid(
       rows: 4,
       row-gutter: rgutter,
-      poster_section("Tits Representation", tits_representation, fill: true),
-      poster_section("Buildings", buildings),
-      poster_section("Acknowledgements", acknowledgements, fill: true),
+      poster_section("Tits Representation", tits_representation),
+      poster_section("Buildings", buildings, fill: true),
+      poster_section("Acknowledgements", acknowledgements),
       poster_section("References", references)
     )
   ),

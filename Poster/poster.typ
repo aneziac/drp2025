@@ -297,15 +297,18 @@
   #grid(
     columns: 2,
     [
-      - An *abstract simplicial complex* is a set $V$, called the _vertex set_, and a collection $X$ of finite subsets of $V$ such that ${v} in X forall v in V$, and when $Delta in X "with" Delta' subset.eq Delta, "we have" Delta' in X$
+      - An *abstract simplicial complex* is a set $V$, called the vertex set, and a collection $X$ of finite subsets of $V$ such that:
+        - ${v} in X$ for all $v in V$
+        - if $Delta in X$ with $Delta' subset.eq Delta$ then $Delta' in X$
 
       - The *nerve* of $(W, S)$, denoted $L = L(W, S)$, is the simplicial complex with a simplex $sigma_T$ for each $T subset.eq S$ such that $T eq.not emptyset$ and $W_T$ is finite
 
-      - Let $L'$ be the *barycentric subdivision* of $L$
+      - Let $L'$ be the *barycentric subdivision* of $L$ (adding additional simplices to divide the complex)
 
-      - The *chamber* $K$ is the cone on the $L'$. For each $s in S$, we can define the closed star in $L'$ of the vertex $s$ to be $K_s subset.eq K$
+      - The *chamber* $K$ is the cone on $L'$. For each $s in S$, we can define the closed star in $L'$ of the vertex $s$ to be $K_s subset.eq K$
 
       - The point added by the cone is the empty set $emptyset$ in the simplicial complex
+        - can be thought of as representing the trivial finite subgroup $W_emptyset$
     ],
     gutter: 2em,
     align(center + horizon)[#grid(
@@ -558,7 +561,9 @@
 ]
 
 #let tits_representation = [
-  A key result due to Jacques Tits gives a faithful linear representation for $(W, S)$, $rho : W -> GL_n (RR)$, with $n = |S|$, such that for each $i$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane and $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$
+  A key result due to Jacques Tits gives a faithful linear representation for $(W, S)$, $
+    rho : W -> GL_n (RR),
+  $ with $n = |S|$, such that for each $i$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane and $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$
   Consider the real vector space $V$ with basis ${e_1, dots, e_n}$, and define a symmetric bilinear form $B$ on $V$ by
   $
     B(e_i, e_j) = cases(
@@ -689,6 +694,6 @@
       poster_section("References", references)
     )
   ),
-  top: 0.5in,
+  top: 0.3in,
   x: 1in,
 )

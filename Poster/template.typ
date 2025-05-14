@@ -86,7 +86,7 @@
 
   grid(
     columns: 1,
-    rows: (15%, 80%, 5%),
+    rows: (14%, 82%, 4%),
     poster_header(title, author, mentor, subtitle),
     doc,
     poster_footer()

@@ -5,7 +5,7 @@
   block(
     width: 100%,
     fill: fill_color,
-    inset: 25pt,
+    inset: 20pt,
     radius: 10pt,
     stack(
       align(center)[== #title],

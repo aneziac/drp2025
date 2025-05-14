@@ -558,11 +558,7 @@
 ]
 
 #let tits_representation = [
-  A key result due to Jacques Tits gives a faithful linear representation for $(W, S)$
-  $
-    rho : W -> GL_n (RR),
-  $
-  with $n = |S|$, such that for each $i$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane and $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$
+  A key result due to Jacques Tits gives a faithful linear representation for $(W, S)$, $rho : W -> GL_n (RR)$, with $n = |S|$, such that for each $i$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane and $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$
   Consider the real vector space $V$ with basis ${e_1, dots, e_n}$, and define a symmetric bilinear form $B$ on $V$ by
   $
     B(e_i, e_j) = cases(
@@ -657,34 +653,41 @@
 ]
 
 #let acknowledgements = [
-  We would like to thank our mentor, Benedict Lee, for his guidance and support in our readings.
-  We also want to thank the Directed Reading Program at UCSB for this opportunity.
-  Finally, we would like to thank the contributors to the open source typesetting language Typst for making this poster a joy to create.
+  We want to thank our mentor, Benedict Lee, for his guidance and support in our readings and the Directed Reading Program at UCSB for this opportunity.
+  Finally, we thank the contributors to the Typst typsetting language for making this poster a joy to create.
 ]
 
 #let references = [
   #bibliography("./books.bib", title: [], full: true)
 ]
 
+
+#let rgutter = 0.25cm
 #pad(
   grid(
     columns: 3,
     inset: 0.5in,
     gutter: 30pt,
-    [
-      #poster_section("Coxeter Systems", coxeter_systems)
-      #poster_section("Chambers and Nerves", chambers_and_nerves, fill: true)
-    ],
-    [
-      #poster_section("The Davis Complex as a Basic Construction", basic_construction, fill: true)
-      #poster_section([The Davis Complex is _CAT(0)_], Davis_complex_CAT0)
-    ],
-    [
-      // #poster_section("Tits Representation", tits_representation, fill: true)
-      #poster_section("Buildings", buildings)
-      #poster_section("Acknowledgements", acknowledgements, fill: true)
-      #poster_section("References", references)
-    ]
+    grid(
+      rows: 2,
+      row-gutter: rgutter,
+      poster_section("Coxeter Systems", coxeter_systems),
+      poster_section("Chambers and Nerves", chambers_and_nerves, fill: true)
+    ),
+    grid(
+      rows: 2,
+      row-gutter: rgutter,
+      poster_section("The Davis Complex as a Basic Construction", basic_construction, fill: true),
+      poster_section([The Davis Complex is _CAT(0)_], Davis_complex_CAT0)
+    ),
+    grid(
+      rows: 4,
+      row-gutter: rgutter,
+      poster_section("Tits Representation", tits_representation, fill: true),
+      poster_section("Buildings", buildings),
+      poster_section("Acknowledgements", acknowledgements, fill: true),
+      poster_section("References", references)
+    )
   ),
   top: 0.5in,
   x: 1in,

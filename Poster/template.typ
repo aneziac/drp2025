@@ -9,10 +9,11 @@
     radius: 10pt,
     stack(
       align(center)[== #title],
-      v(0.5em),
+      v(0.15em),
       line(length: 100%, stroke: (paint: bgcolor2, thickness: 3pt, cap: "round")),
-      v(0.7em),
+      v(0.6em),
       [#body],
+      v(0.3em)
     )
   )
 }
@@ -69,7 +70,6 @@
   )
 
   set text(
-    font: "New Computer Modern Sans",
     fill: scolor1
   )
 

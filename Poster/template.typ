@@ -6,7 +6,7 @@
     width: 100%,
     fill: fill_color,
     inset: 25pt,
-    radius: 20pt,
+    radius: 10pt,
     stack(
       align(center)[== #title],
       v(0.5em),
@@ -43,12 +43,6 @@
         align(center + horizon)[#image("assets/whitelogo.png", height: 100%)]
       )
     ),
-     rect(
-      fill: acolor,
-      height: 0.1in,
-      width: 100%,
-      outset: 1pt,
-     )
   )
 
 }
@@ -57,12 +51,6 @@
 #let poster_footer() = {
   stack(
     dir: ttb,
-    rect(
-      fill: acolor,
-      width: 100%,
-      height: 0.1in,
-      outset: 1pt
-    ),
     block(
       fill: bgcolor2,
       width: 100%,

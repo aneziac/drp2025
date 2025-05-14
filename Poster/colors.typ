@@ -16,6 +16,14 @@
 
 #let cfill   = rgb("#97B6A1")
 
-#let interp1 = rgb("#6A4470")
-#let interp2 = rgb("#7b3a6e")
-#let interp3 = rgb("#8c2c66")
+#let interp0 = rgb("#703661") // color0
+#let interp1 = rgb("#613A5F") // rgb("#6A4470")
+#let interp2 = rgb("#44415B") // rgb("#7b3a6e")
+#let interp3 = rgb("#274957") // rgb("#8c2c66")
+#let interp4 = ccolor2 // ccolor1
+
+// #let interp0 = ccolor0
+// #let interp1 = rgb("#6A4470")
+// #let interp2 = rgb("#7b3a6e")
+// #let interp3 = rgb("#8c2c66")
+// #let interp4 = ccolor1

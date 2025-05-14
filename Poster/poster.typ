@@ -16,7 +16,6 @@
 #set text(
   size: 24pt,
 )
-#show math.equation: set text(font: "New Computer Modern Math")
 
 #let geom_pt(coords, label, fill_color, anchor, filled: true) = {
   let label_text
@@ -300,13 +299,13 @@
         - ${v} in X$ for all $v in V$
         - if $Delta in X$ with $Delta' subset.eq Delta$ then $Delta' in X$
 
-      - The *nerve* of $(W, S)$, denoted by $L = L(W, S)$, is the abstract simplicial complex with a simplex $sigma_T$ for each $T subset.eq S$ such that $T eq.not emptyset$ and $W_T$ is finite.
+      - The *nerve* of $(W, S)$, denoted by $L = L(W, S)$, is the abstract simplicial complex with a simplex $sigma_T$ for each $T subset.eq S$ such that $T eq.not emptyset$ and $W_T$ is finite
 
-      - Let $L'$ be the *barycentric subdivision* of $L$ (adding additional simplices to represent the parabolic subgroups $W_T$).
+      - Let $L'$ be the *barycentric subdivision* of $L$ (adding additional simplices at the barycenters of the existing simplices to represent the parabolic subgroups $W_T$)
 
-      - The *chamber* $K$ is the cone on $L'$. For each $s in S$, we can define the closed star in $L'$ of the vertex $s$ to be $K_s subset.eq K$.
+      - The *chamber* $K$ is the cone on $L'$. For each $s in S$, we can define the closed star in $L'$ of the vertex $s$ to be $K_s subset.eq K$
 
-      - The point added by the cone is the empty set $emptyset$ in the simplicial complex. This can be thought of as representing the finite subgroup $W_emptyset$.
+      - The point added by the cone is the empty set $emptyset$ in the simplicial complex, which represents the subgroup $W_emptyset$.
     ],
     gutter: 2em,
     align(center + horizon)[#grid(
@@ -565,7 +564,7 @@
   //    &lt.eq d_(EE^2) (overline(p), overline(q)).
   //$
   We say a *geodesic space* $X$ is *$"CAT"(0)$* if the triangles in $X$ appear no "fatter" than triangles in a Euclidean space $EE^n$ of same dimension.
-  Similarly we can define *$"CAT"(-1)$* and *$"CAT"(1)$* for triangles in $X$ compared to triangles in hyperbolic space $HH^n$ and spherical space $SS^n$ respectively.
+  Similarly, we can define *$"CAT"(-1)$* and *$"CAT"(1)$* for triangles in $X$ compared to triangles in hyperbolic space $HH^n$ and spherical space $SS^n$ respectively.
   In order to realize this condition for the Davis complex we must construct a metric for it.
 
   We first choose a collection $underline(d) = (d_s)_(s in S)$ for which $d_s > 0$ for any $s in S$.
@@ -593,7 +592,7 @@
       -1 &"if" m_(i j) = infty.
     )
   $
-  Then we define $H_i = {v in V : B (e_i, v) = 0}$ and $sigma_i (v) = v - 2B(e_i, v) e_i$.
+  Then we define $H_i = {v in V : B (e_i, v) = 0}$ and $sigma_i (v) = v - 2B(e_i, v) e_i$ which we note is the usual form of reflections in Euclidean geometry.
 ]
 
 
@@ -693,5 +692,6 @@
       poster_section("References", references)
     )
   ),
+  top: 0.3cm,
   x: 1in,
 )

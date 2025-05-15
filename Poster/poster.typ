@@ -592,7 +592,7 @@
       -1 &"if" m_(i j) = infty.
     )
   $
-  Then define hyperplanes by $H_i = {v in V : B (e_i, v) = 0}$ and linear maps by $sigma_i (v) = v - 2B(e_i, v) e_i, $
+  Then define hyperplanes by $H_i = {v in V : B (e_i, v) = 0}$ and the linear maps by $ sigma_i (v) = v - 2B(e_i, v) e_i, $
   which we note is the usual form of reflections in Euclidean geometry.
 ]
 
@@ -649,17 +649,15 @@
     ],
   )]
 
-  #v(0.5em)
-
   Observe that the first condition is satisfied since any two edges in the tree are contained in a common line.
   The second condition follows because we can trivially find a map between any pair of bi-infinite lines.
   Thus, $T_3$ is a building of type $(W, S)$.
 ]
 
 #let acknowledgements = [
-  We would like to thank our mentor, Benedict Lee, for his guidance and support in our readings.
-  We also want to thank the Directed Reading Program at UCSB for this opportunity.
-  Finally, we would like to thank the contributors to the open source typesetting language Typst for making this poster a joy to create.
+  We want to thank our mentor, Benedict Lee, for his guidance and support in our readings and the Directed Reading Program at UCSB for this opportunity.
+  Finally, we thank the contributors to the Typst typsetting language for making this poster a joy to create.
+  #v(-1em)
 ]
 
 #let references = [

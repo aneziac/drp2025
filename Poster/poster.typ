@@ -6,7 +6,7 @@
 #import math_mod: *
 
 #show: poster.with(
-  "Basic Construction of Coxeter Groups",
+  "Geometric Realization of Coxeter Groups",
   "Nate Annau and Jesse Cobb",
   "Benedict Lee",
   "University of California, Santa Barbara"

@@ -584,7 +584,7 @@
 #let tits_representation = [
   A key result due to Jacques Tits gives a faithful linear representation for $(W, S)$, $
     rho : W -> GL_n (RR),
-  $ with $n = |S|$, such that for each $s_i in S$, $rho(s_i) = sigma_i$ is a linear involution with fixed set a hyperplane and $forall i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$.
+  $ with $n = |S|$, such that for each $s_i in S$, $rho(s_i) = sigma_i$ is a linear involution whose fixed set is a hyperplane and for all $i != j$, the product $sigma_i sigma_j$ has order $m_(i j)$.
   Consider the real vector space $V$ with basis ${e_1, dots, e_n}$, and define a symmetric bilinear form $B$ on $V$ by
   $
     B(e_i, e_j) = cases(
@@ -592,7 +592,7 @@
       -1 &"if" m_(i j) = infty.
     )
   $
-  Then define hyperplanes by $H_i = {v in V : B (e_i, v) = 0}$ and the linear maps by $ sigma_i (v) = v - 2B(e_i, v) e_i, $
+  Then define the hyperplanes by $H_i = {v in V : B (e_i, v) = 0}$ and the linear maps by $ sigma_i (v) = v - 2B(e_i, v) e_i, $
   which we note is the usual form of reflections in Euclidean geometry.
 ]
 
